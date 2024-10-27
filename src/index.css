@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  /* 
+   * 'rem' is relative to this. 1rem = 16px 
+   * Counterintuitively, this affects font size, padding, margin, gaps, or ANYTHING that uses the 'rem' units 
+   * DON'T CHANGE. 
+   */
+  font-size: 16px;
+}
+
+@layer base {
+  /* Heading font */
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    src: url("/src/assets/fonts/Inter.ttf") format("truetype");
+  }
+
+  /* Italicised heading font */
+  @font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 100 900;
+    src: url("/src/assets/fonts/Inter-Italic.ttf") format("truetype");
+  }
+}
