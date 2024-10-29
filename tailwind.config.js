@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         background: "#252627",
+        card: "#3D3D3C",
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
