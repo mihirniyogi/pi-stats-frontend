@@ -46,7 +46,7 @@ const Header = () => {
                         ${border ? "border border-blue-600" : ""}`}
       >
         <h1
-          className={`text-left text-white font-sans font-medium
+          className={`text-left text-white font-sans font-light
               text-xl       
               sm:text-2xl  
               md:text-3xl 

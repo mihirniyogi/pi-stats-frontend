@@ -1,7 +1,6 @@
 import Header from "./components/Header";
 import Divider from "./components/Divider";
-// import Card from "./components/Card";
-// import { FaServer } from "react-icons/fa";
+import SystemInfo from "./components/SystemInfo";
 
 const border = 0;
 
@@ -22,6 +21,7 @@ function App() {
 
         <Divider />
 
+        <SystemInfo />
       </div>
     </div>
   );
