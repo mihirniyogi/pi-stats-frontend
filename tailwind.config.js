@@ -8,6 +8,15 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        serif: [
+          "Source Code Pro",
+          "ui-serif",
+          "Georgia",
+          "Cambria",
+          "Times New Roman",
+          "Times",
+          "serif",
+        ],
       },
     },
   },

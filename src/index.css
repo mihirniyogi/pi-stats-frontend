@@ -27,4 +27,20 @@ html {
     font-weight: 100 900;
     src: url("/src/assets/fonts/Inter-Italic.ttf") format("truetype");
   }
+
+  /* Body font */
+  @font-face {
+    font-family: "Source Code Pro";
+    font-style: normal;
+    font-weight: 200 900;
+    src: url("/src/assets/fonts/SourceCodePro.ttf") format("truetype");
+  }
+
+  /* Italicised body font */
+  @font-face {
+    font-family: "Source Code Pro";
+    font-style: italic;
+    font-weight: 200 900;
+    src: url("/src/assets/fonts/SourceCodePro-Italic.ttf") format("truetype");
+  }
 }
