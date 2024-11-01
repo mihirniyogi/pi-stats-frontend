@@ -6,6 +6,9 @@ export default {
       colors: {
         background: "#252627",
         card: "#3D3D3C",
+        progressbar: "#CFCBCA",
+        jadegreen: "#04A777",
+        rosered: "#D90368",
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],

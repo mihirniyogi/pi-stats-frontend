@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Divider from "./components/Divider";
 import SystemInfo from "./components/SystemInfo";
+import CpuInfo from "./components/CpuInfo";
 
 const border = 0;
 
@@ -22,51 +23,11 @@ function App() {
         <Divider />
 
         <SystemInfo />
+
+        <CpuInfo />
       </div>
     </div>
   );
 }
 
 export default App;
-
-/**
-
-
-<div
-          className={`flex flex-row 
-            mt-8
-            sm:mt-10
-            md:mt-12
-            lg:mt-14 
-          ${border ? "border border-green-600" : ""}`}
-        >
-          <FaServer
-            className={`text-gray-400
-            text-3xl sm:text-4xl md:text-5xl lg:text-6xl
-            ${border ? "border border-orange-500" : ""}`}
-          />
-
-          <div
-            className={`flex flex-row items-center 
-              ml-2 space-x-2
-              sm:ml-3
-              md:ml-4 
-              lg:ml-5 
-              ${border ? "border border-orange-500" : ""}`}
-          >
-            <span
-              className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 
-                rounded-full 
-                ${serverOnline ? "bg-green-500" : "bg-red-500"}`}
-            ></span>
-
-            <p
-              className={`text-gray-400 font-sans 
-              text-md sm:text-lg md:text-xl lg:text-2xl`}
-            >
-              {serverOnline ? "Online" : "Offline"}
-            </p>
-          </div>
-        </div>
-
- */

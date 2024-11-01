@@ -26,7 +26,8 @@ const SystemInfo = () => {
       </h2>
 
       <Card>
-        <p
+        {/* Status */}
+        <section
           className={`text-white font-serif font-medium
               text-sm
               sm:text-md
@@ -34,18 +35,19 @@ const SystemInfo = () => {
               lg:text-xl
               `}
         >
-          Status:{" "}
+          <span>Status: </span>
           <span
             className={`inline-block w-[0.8em] h-[0.8em]  
                 rounded-full 
-                ${serverOnline ? "bg-green-500" : "bg-red-500"}`}
+                ${serverOnline ? "bg-jadegreen" : "bg-red-500"}`}
           ></span>
           <span className={`font-extralight`}>
             {serverOnline ? " Online" : " Offline"}
           </span>
-        </p>
+        </section>
 
-        <p
+        {/* Last Boot */}
+        <section
           className={`text-white font-serif font-medium
               text-sm
               sm:text-md
@@ -53,12 +55,14 @@ const SystemInfo = () => {
               lg:text-xl
               `}
         >
-          Last Boot:{" "}
+          <span>Last Boot: </span>
           <span className={`font-extralight`}>
             {"26 October 2024 21:30:54"}
           </span>
-        </p>
-        <p
+        </section>
+
+        {/* Uptime */}
+        <section
           className={`text-white font-serif font-medium
               text-sm
               sm:text-md
@@ -66,9 +70,9 @@ const SystemInfo = () => {
               lg:text-xl
               `}
         >
-          Uptime:{" "}
+          <span>Uptime: </span>
           <span className={`font-extralight`}>{"2D, 13H, 30M, 56S"}</span>
-        </p>
+        </section>
       </Card>
     </div>
   );
