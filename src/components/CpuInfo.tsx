@@ -1,5 +1,6 @@
-import Card from "./Card";
-import ProgressBar from "./ProgressBar";
+import Card from "./Common/Card";
+import Cores from "./Common/Cores";
+import ProgressBar from "./Common/ProgressBar";
 
 const CpuInfo = () => {
   const border = 0;
