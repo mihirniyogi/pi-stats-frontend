@@ -3,9 +3,9 @@ const ProgressBar = (props: { percentage: number }) => {
     <div
       className={`bg-progressbar h-[0.8em] relative overflow-hidden 
                   w-full rounded-lg
-                  sm:ml-4 sm:w-3/4 sm:rounded-lg
-                  md:ml-4 md:w-2/3 md:rounded-xl
-                  lg:ml-4 lg:w-1/2 lg:rounded-2xl'
+                  sm:rounded-lg
+                  md:rounded-xl
+                  lg:rounded-2xl'
                   `}
     >
       <div

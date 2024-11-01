@@ -1,4 +1,5 @@
 import Card from "./Common/Card";
+import { FaGear } from "react-icons/fa6";
 
 const SystemInfo = () => {
   const border = 0;
@@ -7,22 +8,20 @@ const SystemInfo = () => {
   return (
     <div
       className={`
-          mt-4
-          sm:mt-5
-          md:mt-6
-          lg:mt-7
+        
           ${border ? "border border-orange-400" : ""}
           `}
     >
       <h2
-        className={`text-white font-sans font-bold
+        className={`flex flex-row items-center text-white font-sans font-bold
             text-md
             sm:text-lg
             md:text-xl
             lg:text-2xl
             `}
       >
-        System
+        <FaGear className={`text-jadegreen mr-2`} />
+        <span>System</span>
       </h2>
 
       <Card>

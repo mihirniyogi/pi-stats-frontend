@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Divider from "./components/Divider";
 import SystemInfo from "./components/SystemInfo";
 import CpuInfo from "./components/CpuInfo";
+import MemInfo from "./components/MemInfo";
 
 const border = 0;
 
@@ -22,9 +23,16 @@ function App() {
 
         <Divider />
 
-        <SystemInfo />
+        <div className="flex flex-col md:flex-row">
+          <div className={`flex-1 mt-4 space-y-4 md:mr-4`}>
+            <SystemInfo />
+            <MemInfo />
+          </div>
 
-        <CpuInfo />
+          <div className={`flex-1 mt-4 space-y-4 md:ml-4`}>
+            <CpuInfo />
+          </div>
+        </div>
       </div>
     </div>
   );

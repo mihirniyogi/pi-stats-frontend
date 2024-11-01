@@ -1,15 +1,13 @@
+import { FaMemory } from "react-icons/fa6";
 import Card from "./Common/Card";
-import Cores from "./Common/Cores";
 import ProgressBar from "./Common/ProgressBar";
-import { FaMicrochip } from "react-icons/fa6";
 
-const CpuInfo = () => {
+const MemInfo = () => {
   const border = 0;
 
   return (
     <div
-      className={`
-          ${border ? "border border-orange-400" : ""}
+      className={`${border ? "border border-orange-400" : ""}
           `}
     >
       <h2
@@ -20,12 +18,12 @@ const CpuInfo = () => {
             lg:text-2xl
             `}
       >
-        <FaMicrochip className={`text-jadegreen mr-2`} />
-        <span>CPU</span>
+        <FaMemory className={`text-jadegreen mr-2`} />
+        <span>RAM</span>
       </h2>
 
       <Card flag="30s ago">
-        {/* Temperature */}
+        {/* Total (in GB) */}
         <section
           className={`text-white font-serif font-medium
               text-sm
@@ -34,11 +32,11 @@ const CpuInfo = () => {
               lg:text-xl
               `}
         >
-          <span>Temperature: </span>
-          <span className={`font-extralight`}>{"46.5°C"}</span>
+          <span>{"Total: "}</span>
+          <span className={`font-extralight`}>{"1.93 GB"}</span>
         </section>
 
-        {/* Frequency */}
+        {/* Used (in GB) */}
         <section
           className={`text-white font-serif font-medium
               text-sm
@@ -47,13 +45,26 @@ const CpuInfo = () => {
               lg:text-xl
               `}
         >
-          <span>Frequency: </span>
-          <span className={`font-extralight`}>{`${"0.6"} / 1.8 GHz`}</span>
+          <span>Used: </span>
+          <span className={`font-extralight`}>{"0.62 GB"}</span>
         </section>
 
-        {/* Load */}
+        {/* Available (in GB) */}
         <section
-          className={`flex flex-row items-center
+          className={`text-white font-serif font-medium
+              text-sm
+              sm:text-md
+              md:text-lg
+              lg:text-xl
+              `}
+        >
+          <span>Available: </span>
+          <span className={`font-extralight`}>{"1.21 GB"}</span>
+        </section>
+
+        {/* Percentage */}
+        <section
+          className={`mt-2
             text-white font-serif font-medium
               text-sm
               sm:text-md
@@ -61,25 +72,11 @@ const CpuInfo = () => {
               lg:text-xl
               `}
         >
-          <span className={`mr-2`}>Load: </span>
-          <ProgressBar percentage={10} />
-        </section>
-
-        {/* 4 Cores Load */}
-        <section
-          className={`flex flex-col text-white font-serif font-medium
-              text-sm
-              sm:text-md
-              md:text-lg
-              lg:text-xl
-              `}
-        >
-          <span>Cores: </span>
-          <Cores cores={[10, 20, 30, 40]} />
+          <ProgressBar percentage={37.2} />
         </section>
       </Card>
     </div>
   );
 };
 
-export default CpuInfo;
+export default MemInfo;
