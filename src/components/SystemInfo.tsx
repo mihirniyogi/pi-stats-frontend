@@ -73,6 +73,18 @@ const SystemInfo = () => {
           <span>Uptime: </span>
           <span className={`font-extralight`}>{"2D, 13H, 30M, 56S"}</span>
         </section>
+
+        {/* Static Info */}
+        <section
+          className={`mt-4 text-white font-serif font-medium
+              text-xs
+              sm:text-sm
+              `}
+        >
+          <span
+            className={`flex flex-row flex-wrap font-extralight italic`}
+          >{`${"aarch64"} • ${"raspberrypi"} • ${"Linux"} • ${"Debian GNU/Linux 12 (bookworm)"} • ${"6.6.47+rpt-rpi-v8"}`}</span>
+        </section>
       </Card>
     </div>
   );
