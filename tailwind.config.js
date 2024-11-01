@@ -8,7 +8,7 @@ export default {
         card: "#3D3D3C",
         progressbar: "#CFCBCA",
         jadegreen: "#04A777",
-        rosered: "#D90368",
+        flagyellow: "#7E980B",
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
