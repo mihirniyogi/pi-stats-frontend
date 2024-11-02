@@ -14,7 +14,7 @@ function App() {
     <div className={`flex min-h-screen bg-background`}>
       {/* Entire screen with x-margins */}
       <div
-        className={`flex flex-col min-h-full w-full 
+        className={`flex flex-col min-h-full w-full mb-12
           mx-4 
           sm:mx-6 
           md:mx-8 
