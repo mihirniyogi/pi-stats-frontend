@@ -4,6 +4,7 @@ import SystemInfo from "./components/SystemInfo";
 import CpuInfo from "./components/CpuInfo";
 import MemInfo from "./components/MemInfo";
 import DiskInfo from "./components/DiskInfo";
+import SvcInfo from "./components/SvcInfo";
 
 const border = 0;
 
@@ -33,6 +34,11 @@ function App() {
           >
             <SystemInfo />
             <MemInfo />
+
+            {/* Services Stats [on md: screens and above] */}
+            <div className="hidden mt-4 md:block sm:mt-6 md:mt-8">
+              <SvcInfo />
+            </div>
           </div>
 
           <div
@@ -44,6 +50,17 @@ function App() {
             <CpuInfo />
             <DiskInfo />
           </div>
+        </div>
+
+        {/* Services Stats [On Mobile] */}
+        <div
+          className={`block md:hidden
+          mt-4
+          sm:mt-6
+          md:mt-8
+          `}
+        >
+          <SvcInfo />
         </div>
       </div>
     </div>
