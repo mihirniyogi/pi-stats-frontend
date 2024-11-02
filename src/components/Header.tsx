@@ -21,7 +21,7 @@ const Header = () => {
     updateTime();
     const interval = setInterval(() => updateTime(), 1000);
     return () => clearInterval(interval);
-  });
+  }, []);
 
   return (
     <div
