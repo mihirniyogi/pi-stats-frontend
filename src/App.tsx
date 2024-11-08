@@ -105,7 +105,7 @@ function App() {
             md:mt-8 md:space-y-8`}
           >
             <CpuInfo data={data.cpu} />
-            <DiskInfo />
+            <DiskInfo data={data.disk} />
           </div>
         </div>
 

@@ -1,15 +1,11 @@
+import { DiskInfoData } from "../interfaces/ApiInterfaces";
 import Card from "./Common/Card";
 import ProgressBar from "./Common/ProgressBar";
 import { FaSdCard } from "react-icons/fa6";
 
-const DiskInfo = () => {
-  const border = 0;
-
+const DiskInfo = ({ data }: { data: DiskInfoData | null }) => {
   return (
-    <div
-      className={`${border ? "border border-orange-400" : ""}
-          `}
-    >
+    <div>
       <h2
         className={`flex flex-row items-center text-white font-sans font-bold
             text-md
@@ -22,7 +18,7 @@ const DiskInfo = () => {
         <span>Disk</span>
       </h2>
 
-      <Card flag="30s ago">
+      <Card>
         {/* Total (in GB) */}
         <section
           className={`text-white font-serif font-medium
@@ -33,7 +29,9 @@ const DiskInfo = () => {
               `}
         >
           <span>{"Total: "}</span>
-          <span className={`font-extralight`}>{"30.31 GB"}</span>
+          <span className={`font-extralight`}>
+            {data ? `${data.total.toFixed(2)} GB` : "-"}
+          </span>
         </section>
 
         {/* Used (in GB) */}
@@ -46,7 +44,9 @@ const DiskInfo = () => {
               `}
         >
           <span>Used: </span>
-          <span className={`font-extralight`}>{"16.49 GB"}</span>
+          <span className={`font-extralight`}>
+            {data ? `${data.used.toFixed(2)} GB` : "-"}
+          </span>
         </section>
 
         {/* Free (in GB) */}
@@ -59,7 +59,9 @@ const DiskInfo = () => {
               `}
         >
           <span>Free: </span>
-          <span className={`font-extralight`}>{"12.25 GB"}</span>
+          <span className={`font-extralight`}>
+            {data ? `${data.free.toFixed(2)} GB` : "-"}
+          </span>
         </section>
 
         {/* Percentage */}
@@ -72,7 +74,9 @@ const DiskInfo = () => {
               lg:text-xl
               `}
         >
-          <ProgressBar percentage={57.4} />
+          <ProgressBar
+            percentage={data ? parseFloat(data.percent.toFixed(1)) : 0}
+          />
         </section>
       </Card>
     </div>
