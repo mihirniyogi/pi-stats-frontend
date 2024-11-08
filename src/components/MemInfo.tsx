@@ -1,15 +1,11 @@
 import { FaMemory } from "react-icons/fa6";
 import Card from "./Common/Card";
 import ProgressBar from "./Common/ProgressBar";
+import { MemInfoData } from "../interfaces/ApiInterfaces";
 
-const MemInfo = () => {
-  const border = 0;
-
+const MemInfo = ({ data }: { data: MemInfoData | null }) => {
   return (
-    <div
-      className={`${border ? "border border-orange-400" : ""}
-          `}
-    >
+    <div>
       <h2
         className={`flex flex-row items-center text-white font-sans font-bold
             text-md
@@ -22,7 +18,7 @@ const MemInfo = () => {
         <span>RAM</span>
       </h2>
 
-      <Card flag="30s ago">
+      <Card>
         {/* Total (in GB) */}
         <section
           className={`text-white font-serif font-medium
@@ -33,7 +29,9 @@ const MemInfo = () => {
               `}
         >
           <span>{"Total: "}</span>
-          <span className={`font-extralight`}>{"1.93 GB"}</span>
+          <span className={`font-extralight`}>
+            {data ? `${data.total.toFixed(2)} GB` : "-"}
+          </span>
         </section>
 
         {/* Used (in GB) */}
@@ -46,7 +44,10 @@ const MemInfo = () => {
               `}
         >
           <span>Used: </span>
-          <span className={`font-extralight`}>{"0.62 GB"}</span>
+          <span className={`font-extralight`}>
+            {" "}
+            {data ? `${data.used.toFixed(2)} GB` : "-"}
+          </span>
         </section>
 
         {/* Available (in GB) */}
@@ -59,7 +60,10 @@ const MemInfo = () => {
               `}
         >
           <span>Available: </span>
-          <span className={`font-extralight`}>{"1.21 GB"}</span>
+          <span className={`font-extralight`}>
+            {" "}
+            {data ? `${data.available.toFixed(2)} GB` : "-"}
+          </span>
         </section>
 
         {/* Percentage */}
@@ -72,7 +76,13 @@ const MemInfo = () => {
               lg:text-xl
               `}
         >
-          <ProgressBar percentage={37.2} />
+          <ProgressBar
+            percentage={
+              data
+                ? parseFloat(((data.used / data.total) * 100).toFixed(1))
+                : 0.0
+            }
+          />
         </section>
       </Card>
     </div>

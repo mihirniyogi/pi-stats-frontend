@@ -90,7 +90,7 @@ function App() {
             md:mt-8 md:space-y-8`}
           >
             <SysInfo data={data.sys} />
-            <MemInfo />
+            <MemInfo data={data.mem} />
 
             {/* Services Stats [on md: screens and above] */}
             <div className="hidden mt-4 md:block sm:mt-6 md:mt-8">
