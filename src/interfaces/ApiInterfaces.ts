@@ -48,6 +48,7 @@ export interface SvcInfoData {
   [key: string]: {
     status: boolean;
     process: string;
+    port?: number;
     link: string;
   };
 }

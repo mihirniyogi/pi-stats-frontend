@@ -94,7 +94,7 @@ function App() {
 
             {/* Services Stats [on md: screens and above] */}
             <div className="hidden mt-4 md:block sm:mt-6 md:mt-8">
-              <SvcInfo />
+              <SvcInfo data={data.svc} />
             </div>
           </div>
 
@@ -117,7 +117,7 @@ function App() {
           md:mt-8
           `}
         >
-          <SvcInfo />
+          <SvcInfo data={data.svc} />
         </div>
       </div>
     </div>

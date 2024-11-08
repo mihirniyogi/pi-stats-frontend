@@ -1,5 +1,6 @@
 import { FaBuffer } from "react-icons/fa6";
 import Card from "./Common/Card";
+import { SvcInfoData } from "../interfaces/ApiInterfaces";
 
 type Service = {
   name: string;
@@ -9,43 +10,19 @@ type Service = {
   link?: string;
 };
 
-const SvcInfo = () => {
-  const border = 0;
-
-  const services: Service[] = [
-    {
-      name: "strapi",
-      managedBy: "pm2",
-      port: 1337,
-      status: "offline",
-      link: "https://strapi.mihirniyogi.com/admin",
-    },
-    {
-      name: "cloudflared",
-      managedBy: "docker",
-      status: "online",
-      link: "https://dash.cloudflare.com/",
-    },
-    {
-      name: "sshd",
-      managedBy: "systemd",
-      port: 22,
-      status: "online",
-      link: "https://ssh.mihirniyogi.com/",
-    },
-    {
-      name: "pi-stats-backend",
-      managedBy: "pm2",
-      port: 5000,
-      status: "online",
-    },
-  ];
+const SvcInfo = ({ data }: { data: SvcInfoData | null }) => {
+  const services: Service[] = data
+    ? Object.entries(data).map(([name, info]) => ({
+        name: name,
+        managedBy: info.process,
+        port: info.port ? info.port : undefined,
+        status: info.status === true ? "online" : "offline",
+        link: info.link ? info.link : undefined,
+      }))
+    : [];
 
   return (
-    <div
-      className={`${border ? "border border-orange-400" : ""}
-          `}
-    >
+    <div>
       <h2
         className={`flex flex-row items-center text-white font-sans font-bold
             text-md
