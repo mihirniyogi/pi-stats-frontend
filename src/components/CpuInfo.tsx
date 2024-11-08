@@ -1,17 +1,12 @@
+import { CpuInfoData } from "../interfaces/ApiInterfaces";
 import Card from "./Common/Card";
 import Cores from "./Common/Cores";
 import ProgressBar from "./Common/ProgressBar";
 import { FaMicrochip } from "react-icons/fa6";
 
-const CpuInfo = () => {
-  const border = 0;
-
+const CpuInfo = ({ data }: { data: CpuInfoData | null }) => {
   return (
-    <div
-      className={`
-          ${border ? "border border-orange-400" : ""}
-          `}
-    >
+    <div>
       <h2
         className={`flex flex-row items-center text-white font-sans font-bold
             text-md
@@ -24,7 +19,7 @@ const CpuInfo = () => {
         <span>CPU</span>
       </h2>
 
-      <Card flag="30s ago">
+      <Card>
         {/* Temperature */}
         <section
           className={`text-white font-serif font-medium
@@ -35,7 +30,9 @@ const CpuInfo = () => {
               `}
         >
           <span>Temperature: </span>
-          <span className={`font-extralight`}>{"46.5°C"}</span>
+          <span className={`font-extralight`}>
+            {data ? `${data.cpu_temp.toFixed(2)}°C` : "-"}
+          </span>
         </section>
 
         {/* Frequency */}
@@ -48,7 +45,9 @@ const CpuInfo = () => {
               `}
         >
           <span>Frequency: </span>
-          <span className={`font-extralight`}>{`${"0.6"} / 1.8 GHz`}</span>
+          <span className={`font-extralight`}>
+            {data ? `${(data.cpu_freq / 1000).toFixed(1)} / 1.8 GHz` : "-"}
+          </span>
         </section>
 
         {/* Load */}
@@ -62,7 +61,7 @@ const CpuInfo = () => {
               `}
         >
           <span className={`mr-2`}>Load: </span>
-          <ProgressBar percentage={10} />
+          <ProgressBar percentage={data ? data.cpu_usage : 0.0} />
         </section>
 
         {/* 4 Cores Load */}
@@ -75,7 +74,9 @@ const CpuInfo = () => {
               `}
         >
           <span>Cores: </span>
-          <Cores cores={[10, 20, 30, 40]} />
+          <Cores
+            cores={data ? Object.values(data.cpu_usage_per_core) : [0, 0, 0, 0]}
+          />
         </section>
       </Card>
     </div>

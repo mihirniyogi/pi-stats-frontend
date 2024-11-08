@@ -20,10 +20,10 @@ export interface CpuInfoData {
   cpu_freq: number;
   cpu_count: number;
   cpu_usage_per_core: {
-    c1: number;
-    c2: number;
-    c3: number;
-    c4: number;
+    C1: number;
+    C2: number;
+    C3: number;
+    C4: number;
   };
 }
 

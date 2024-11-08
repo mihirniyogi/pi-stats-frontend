@@ -45,7 +45,6 @@ const MemInfo = ({ data }: { data: MemInfoData | null }) => {
         >
           <span>Used: </span>
           <span className={`font-extralight`}>
-            {" "}
             {data ? `${data.used.toFixed(2)} GB` : "-"}
           </span>
         </section>

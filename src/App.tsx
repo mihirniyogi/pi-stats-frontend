@@ -104,7 +104,7 @@ function App() {
             sm:mt-6 sm:space-y-6 
             md:mt-8 md:space-y-8`}
           >
-            <CpuInfo />
+            <CpuInfo data={data.cpu} />
             <DiskInfo />
           </div>
         </div>
