@@ -1,17 +1,12 @@
+import { SysInfoData } from "../interfaces/ApiInterfaces";
 import Card from "./Common/Card";
 import { FaGear } from "react-icons/fa6";
 
-const SystemInfo = () => {
-  const border = 0;
-  const serverOnline = 1;
+const SysInfo = ({ data }: { data: SysInfoData | null }) => {
+  const serverOnline = data !== null ? 1 : 0;
 
   return (
-    <div
-      className={`
-        
-          ${border ? "border border-orange-400" : ""}
-          `}
-    >
+    <div>
       <h2
         className={`flex flex-row items-center text-white font-sans font-bold
             text-md
@@ -56,7 +51,7 @@ const SystemInfo = () => {
         >
           <span>Last Boot: </span>
           <span className={`font-extralight`}>
-            {"26 October 2024 21:30:54"}
+            {data ? data.last_boot : "-"}
           </span>
         </section>
 
@@ -70,7 +65,14 @@ const SystemInfo = () => {
               `}
         >
           <span>Uptime: </span>
-          <span className={`font-extralight`}>{"2D, 13H, 30M, 56S"}</span>
+          <span className={`font-extralight`}>
+            {data
+              ? `${Math.round(data.uptime.days)}D, 
+                  ${Math.round(data.uptime.hours)}H, 
+                  ${Math.round(data.uptime.minutes)}M 
+                  ${Math.round(data.uptime.seconds)}S`
+              : "-"}{" "}
+          </span>
         </section>
 
         {/* Static Info */}
@@ -80,13 +82,15 @@ const SystemInfo = () => {
               sm:text-sm
               `}
         >
-          <span
-            className={`flex flex-row flex-wrap font-extralight italic`}
-          >{`${"aarch64"} • ${"raspberrypi"} • ${"Linux"} • ${"Debian GNU/Linux 12 (bookworm)"} • ${"6.6.47+rpt-rpi-v8"}`}</span>
+          <span className={`flex flex-row flex-wrap font-extralight italic`}>
+            {data
+              ? `${data.arch} • ${data.hostname} • ${data.os_type} • ${data.os_name} • ${data.os_version}`
+              : "unable to fetch system info"}
+          </span>
         </section>
       </Card>
     </div>
   );
 };
 
-export default SystemInfo;
+export default SysInfo;
