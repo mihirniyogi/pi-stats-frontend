@@ -6,14 +6,7 @@ import ProgressBar from "./Common/ProgressBar";
 import { FaMicrochip } from "react-icons/fa6";
 
 const CpuInfo = () => {
-  const { data, loading, error } = useFetch<CpuInfoData>("cpu/", 10000);
-
-  if (loading) {
-    return <p className="text-white">CPU Loading...</p>;
-  }
-  if (error) {
-    return <p className="text-white">{error}</p>;
-  }
+  const { data, loading } = useFetch<CpuInfoData>("cpu/", 10000);
 
   return (
     <div>
@@ -28,6 +21,12 @@ const CpuInfo = () => {
         <FaMicrochip className={`text-jadegreen mr-2`} />
         <span>CPU</span>
       </h2>
+
+      {loading && (
+        <Card>
+          <p className="font-serif text-white">CPU Loading...</p>
+        </Card>
+      )}
 
       <Card>
         {/* Temperature */}

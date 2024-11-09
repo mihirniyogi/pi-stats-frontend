@@ -12,14 +12,7 @@ type Service = {
 };
 
 const SvcInfo = () => {
-  const { data, loading, error } = useFetch<SvcInfoData>("svc/", 10000);
-
-  if (loading) {
-    return <p className="text-white">Services Loading...</p>;
-  }
-  if (error) {
-    return <p className="text-white">{error}</p>;
-  }
+  const { data, loading } = useFetch<SvcInfoData>("svc/", 10000);
 
   const services: Service[] = data
     ? Object.entries(data).map(([name, info]) => ({
@@ -29,7 +22,7 @@ const SvcInfo = () => {
         status: info.status === true ? "online" : "offline",
         link: info.link ? info.link : undefined,
       }))
-    : [];
+    : [{ name: "No services found", managedBy: "-", status: "offline" }];
 
   return (
     <div>
@@ -44,6 +37,12 @@ const SvcInfo = () => {
         <FaBuffer className={`text-jadegreen mr-2`} />
         <span>Services</span>
       </h2>
+
+      {loading && (
+        <Card>
+          <p className="font-serif text-white">Services Loading...</p>
+        </Card>
+      )}
 
       <div className={`grid grid-cols-1 gap-x-4 sm:grid-cols-2 font-serif`}>
         {services.map((service: Service, index: number) => (

@@ -4,14 +4,14 @@ import { FaGear } from "react-icons/fa6";
 import useFetch from "../utils/useFetch";
 
 const SysInfo = () => {
-  const { data, loading, error } = useFetch<SysInfoData>("gen/", 10000);
+  const { data, loading } = useFetch<SysInfoData>("gen/", 10000);
 
-  if (loading) {
-    return <p className="text-white">Sys Loading...</p>;
-  }
-  if (error) {
-    return <p className="text-white">{error}</p>;
-  }
+  // if (loading) {
+  //   return <p className="text-white">Sys Loading...</p>;
+  // }
+  // if (error) {
+  //   return <p className="text-white">{error}</p>;
+  // }
 
   const serverOnline = data !== null ? 1 : 0;
 
@@ -28,6 +28,12 @@ const SysInfo = () => {
         <FaGear className={`text-jadegreen mr-2`} />
         <span>System</span>
       </h2>
+
+      {loading && (
+        <Card>
+          <p className="text-white">Sys Loading...</p>
+        </Card>
+      )}
 
       <Card>
         {/* Status */}

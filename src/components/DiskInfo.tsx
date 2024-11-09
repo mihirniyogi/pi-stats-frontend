@@ -5,14 +5,7 @@ import ProgressBar from "./Common/ProgressBar";
 import { FaSdCard } from "react-icons/fa6";
 
 const DiskInfo = () => {
-  const { data, loading, error } = useFetch<DiskInfoData>("disk/", 10000);
-
-  if (loading) {
-    return <p className="text-white">Disk Loading...</p>;
-  }
-  if (error) {
-    return <p className="text-white">{error}</p>;
-  }
+  const { data, loading } = useFetch<DiskInfoData>("disk/", 10000);
 
   return (
     <div>
@@ -27,6 +20,12 @@ const DiskInfo = () => {
         <FaSdCard className={`text-jadegreen mr-2`} />
         <span>Disk</span>
       </h2>
+
+      {loading && (
+        <Card>
+          <p className="font-serif text-white">Disk Loading...</p>
+        </Card>
+      )}
 
       <Card>
         {/* Total (in GB) */}

@@ -5,14 +5,7 @@ import { MemInfoData } from "../utils/ApiInterfaces";
 import useFetch from "../utils/useFetch";
 
 const MemInfo = () => {
-  const { data, loading, error } = useFetch<MemInfoData>("mem/", 10000);
-
-  if (loading) {
-    return <p className="text-white">Mem Loading...</p>;
-  }
-  if (error) {
-    return <p className="text-white">{error}</p>;
-  }
+  const { data, loading } = useFetch<MemInfoData>("mem/", 10000);
 
   return (
     <div>
@@ -27,6 +20,12 @@ const MemInfo = () => {
         <FaMemory className={`text-jadegreen mr-2`} />
         <span>RAM</span>
       </h2>
+
+      {loading && (
+        <Card>
+          <p className="font-serif text-white">Memory Loading...</p>
+        </Card>
+      )}
 
       <Card>
         {/* Total (in GB) */}
