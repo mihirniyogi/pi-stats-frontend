@@ -1,11 +1,11 @@
-import { DiskInfoData } from "../utils/ApiInterfaces";
-import useFetch from "../utils/useFetch";
-import Card from "./Common/Card";
-import ProgressBar from "./Common/ProgressBar";
-import { FaSdCard } from "react-icons/fa6";
+import { FaMemory } from "react-icons/fa6";
+import Card from "../Common/Card";
+import ProgressBar from "../Common/ProgressBar";
+import { MemInfoData } from "../../utils/ApiInterfaces";
+import useFetch from "../../utils/useFetch";
 
-const DiskInfo = () => {
-  const { data, loading } = useFetch<DiskInfoData>("disk/", 10000);
+const MemInfo = () => {
+  const { data, loading } = useFetch<MemInfoData>("mem/", 10000);
 
   return (
     <div>
@@ -17,14 +17,14 @@ const DiskInfo = () => {
             lg:text-2xl
             `}
       >
-        <FaSdCard className={`text-jadegreen mr-2`} />
-        <span>Disk</span>
+        <FaMemory className={`text-jadegreen mr-2`} />
+        <span>RAM</span>
       </h2>
 
       {loading ? (
         // Loading
         <Card>
-          <p className="font-serif text-white">Disk Loading...</p>
+          <p className="font-serif text-white">Memory Loading...</p>
         </Card>
       ) : (
         // Actual
@@ -59,7 +59,7 @@ const DiskInfo = () => {
             </span>
           </section>
 
-          {/* Free (in GB) */}
+          {/* Available (in GB) */}
           <section
             className={`text-white font-serif font-medium
               text-sm
@@ -68,9 +68,10 @@ const DiskInfo = () => {
               lg:text-xl
               `}
           >
-            <span>Free: </span>
+            <span>Available: </span>
             <span className={`font-extralight`}>
-              {data ? `${data.free.toFixed(2)} GB` : "-"}
+              {" "}
+              {data ? `${data.available.toFixed(2)} GB` : "-"}
             </span>
           </section>
 
@@ -85,7 +86,11 @@ const DiskInfo = () => {
               `}
           >
             <ProgressBar
-              percentage={data ? parseFloat(data.percent.toFixed(1)) : 0}
+              percentage={
+                data
+                  ? parseFloat(((data.used / data.total) * 100).toFixed(1))
+                  : 0.0
+              }
             />
           </section>
         </Card>
@@ -94,4 +99,4 @@ const DiskInfo = () => {
   );
 };
 
-export default DiskInfo;
+export default MemInfo;

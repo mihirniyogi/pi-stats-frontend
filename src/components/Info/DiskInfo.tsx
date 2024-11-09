@@ -1,12 +1,11 @@
-import useFetch from "../utils/useFetch";
-import { CpuInfoData } from "../utils/ApiInterfaces";
-import Card from "./Common/Card";
-import Cores from "./Common/Cores";
-import ProgressBar from "./Common/ProgressBar";
-import { FaMicrochip } from "react-icons/fa6";
+import { DiskInfoData } from "../../utils/ApiInterfaces";
+import useFetch from "../../utils/useFetch";
+import Card from "../Common/Card";
+import ProgressBar from "../Common/ProgressBar";
+import { FaSdCard } from "react-icons/fa6";
 
-const CpuInfo = () => {
-  const { data, loading } = useFetch<CpuInfoData>("cpu/", 10000);
+const DiskInfo = () => {
+  const { data, loading } = useFetch<DiskInfoData>("disk/", 10000);
 
   return (
     <div>
@@ -18,19 +17,19 @@ const CpuInfo = () => {
             lg:text-2xl
             `}
       >
-        <FaMicrochip className={`text-jadegreen mr-2`} />
-        <span>CPU</span>
+        <FaSdCard className={`text-jadegreen mr-2`} />
+        <span>Disk</span>
       </h2>
 
       {loading ? (
         // Loading
         <Card>
-          <p className="font-serif text-white">CPU Loading...</p>
+          <p className="font-serif text-white">Disk Loading...</p>
         </Card>
       ) : (
         // Actual
         <Card>
-          {/* Temperature */}
+          {/* Total (in GB) */}
           <section
             className={`text-white font-serif font-medium
               text-sm
@@ -39,13 +38,13 @@ const CpuInfo = () => {
               lg:text-xl
               `}
           >
-            <span>Temperature: </span>
+            <span>{"Total: "}</span>
             <span className={`font-extralight`}>
-              {data ? `${data.cpu_temp.toFixed(2)}°C` : "-"}
+              {data ? `${data.total.toFixed(2)} GB` : "-"}
             </span>
           </section>
 
-          {/* Frequency */}
+          {/* Used (in GB) */}
           <section
             className={`text-white font-serif font-medium
               text-sm
@@ -54,15 +53,30 @@ const CpuInfo = () => {
               lg:text-xl
               `}
           >
-            <span>Frequency: </span>
+            <span>Used: </span>
             <span className={`font-extralight`}>
-              {data ? `${(data.cpu_freq / 1000).toFixed(1)} / 1.8 GHz` : "-"}
+              {data ? `${data.used.toFixed(2)} GB` : "-"}
             </span>
           </section>
 
-          {/* Load */}
+          {/* Free (in GB) */}
           <section
-            className={`flex flex-row items-center
+            className={`text-white font-serif font-medium
+              text-sm
+              sm:text-md
+              md:text-lg
+              lg:text-xl
+              `}
+          >
+            <span>Free: </span>
+            <span className={`font-extralight`}>
+              {data ? `${data.free.toFixed(2)} GB` : "-"}
+            </span>
+          </section>
+
+          {/* Percentage */}
+          <section
+            className={`mt-2
             text-white font-serif font-medium
               text-sm
               sm:text-md
@@ -70,24 +84,8 @@ const CpuInfo = () => {
               lg:text-xl
               `}
           >
-            <span className={`mr-2`}>Load: </span>
-            <ProgressBar percentage={data ? data.cpu_usage : 0.0} />
-          </section>
-
-          {/* 4 Cores Load */}
-          <section
-            className={`flex flex-col text-white font-serif font-medium
-              text-sm
-              sm:text-md
-              md:text-lg
-              lg:text-xl
-              `}
-          >
-            <span>Cores: </span>
-            <Cores
-              cores={
-                data ? Object.values(data.cpu_usage_per_core) : [0, 0, 0, 0]
-              }
+            <ProgressBar
+              percentage={data ? parseFloat(data.percent.toFixed(1)) : 0}
             />
           </section>
         </Card>
@@ -96,4 +94,4 @@ const CpuInfo = () => {
   );
 };
 
-export default CpuInfo;
+export default DiskInfo;

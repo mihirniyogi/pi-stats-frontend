@@ -1,11 +1,12 @@
-import { FaMemory } from "react-icons/fa6";
-import Card from "./Common/Card";
-import ProgressBar from "./Common/ProgressBar";
-import { MemInfoData } from "../utils/ApiInterfaces";
-import useFetch from "../utils/useFetch";
+import useFetch from "../../utils/useFetch";
+import { CpuInfoData } from "../../utils/ApiInterfaces";
+import Card from "../Common/Card";
+import Cores from "../Common/Cores";
+import ProgressBar from "../Common/ProgressBar";
+import { FaMicrochip } from "react-icons/fa6";
 
-const MemInfo = () => {
-  const { data, loading } = useFetch<MemInfoData>("mem/", 10000);
+const CpuInfo = () => {
+  const { data, loading } = useFetch<CpuInfoData>("cpu/", 10000);
 
   return (
     <div>
@@ -17,19 +18,19 @@ const MemInfo = () => {
             lg:text-2xl
             `}
       >
-        <FaMemory className={`text-jadegreen mr-2`} />
-        <span>RAM</span>
+        <FaMicrochip className={`text-jadegreen mr-2`} />
+        <span>CPU</span>
       </h2>
 
       {loading ? (
         // Loading
         <Card>
-          <p className="font-serif text-white">Memory Loading...</p>
+          <p className="font-serif text-white">CPU Loading...</p>
         </Card>
       ) : (
         // Actual
         <Card>
-          {/* Total (in GB) */}
+          {/* Temperature */}
           <section
             className={`text-white font-serif font-medium
               text-sm
@@ -38,13 +39,13 @@ const MemInfo = () => {
               lg:text-xl
               `}
           >
-            <span>{"Total: "}</span>
+            <span>Temperature: </span>
             <span className={`font-extralight`}>
-              {data ? `${data.total.toFixed(2)} GB` : "-"}
+              {data ? `${data.cpu_temp.toFixed(2)}°C` : "-"}
             </span>
           </section>
 
-          {/* Used (in GB) */}
+          {/* Frequency */}
           <section
             className={`text-white font-serif font-medium
               text-sm
@@ -53,31 +54,15 @@ const MemInfo = () => {
               lg:text-xl
               `}
           >
-            <span>Used: </span>
+            <span>Frequency: </span>
             <span className={`font-extralight`}>
-              {data ? `${data.used.toFixed(2)} GB` : "-"}
+              {data ? `${(data.cpu_freq / 1000).toFixed(1)} / 1.8 GHz` : "-"}
             </span>
           </section>
 
-          {/* Available (in GB) */}
+          {/* Load */}
           <section
-            className={`text-white font-serif font-medium
-              text-sm
-              sm:text-md
-              md:text-lg
-              lg:text-xl
-              `}
-          >
-            <span>Available: </span>
-            <span className={`font-extralight`}>
-              {" "}
-              {data ? `${data.available.toFixed(2)} GB` : "-"}
-            </span>
-          </section>
-
-          {/* Percentage */}
-          <section
-            className={`mt-2
+            className={`flex flex-row items-center
             text-white font-serif font-medium
               text-sm
               sm:text-md
@@ -85,11 +70,23 @@ const MemInfo = () => {
               lg:text-xl
               `}
           >
-            <ProgressBar
-              percentage={
-                data
-                  ? parseFloat(((data.used / data.total) * 100).toFixed(1))
-                  : 0.0
+            <span className={`mr-2`}>Load: </span>
+            <ProgressBar percentage={data ? data.cpu_usage : 0.0} />
+          </section>
+
+          {/* 4 Cores Load */}
+          <section
+            className={`flex flex-col text-white font-serif font-medium
+              text-sm
+              sm:text-md
+              md:text-lg
+              lg:text-xl
+              `}
+          >
+            <span>Cores: </span>
+            <Cores
+              cores={
+                data ? Object.values(data.cpu_usage_per_core) : [0, 0, 0, 0]
               }
             />
           </section>
@@ -99,4 +96,4 @@ const MemInfo = () => {
   );
 };
 
-export default MemInfo;
+export default CpuInfo;

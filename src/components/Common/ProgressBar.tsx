@@ -6,10 +6,10 @@ const ProgressBar = (props: { percentage: number }) => {
                   sm:rounded-lg
                   md:rounded-xl
                   lg:rounded-2xl'
-                  `}
+                   `}
     >
       <div
-        className={`bg-jadegreen h-full`}
+        className={`bg-jadegreen h-full transition-all duration-500`}
         style={{ width: `${props.percentage}%` }}
       >
         <span

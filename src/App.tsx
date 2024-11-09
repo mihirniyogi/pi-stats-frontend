@@ -1,10 +1,10 @@
 import Header from "./components/Header";
 import Divider from "./components/Divider";
-import SysInfo from "./components/SysInfo";
-import CpuInfo from "./components/CpuInfo";
-import MemInfo from "./components/MemInfo";
-import DiskInfo from "./components/DiskInfo";
-import SvcInfo from "./components/SvcInfo";
+import SysInfo from "./components/Info/SysInfo";
+import CpuInfo from "./components/Info/CpuInfo";
+import MemInfo from "./components/Info/MemInfo";
+import DiskInfo from "./components/Info/DiskInfo";
+import SvcInfo from "./components/Info/SvcInfo";
 
 function App() {
   return (

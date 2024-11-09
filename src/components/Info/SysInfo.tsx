@@ -1,7 +1,7 @@
-import { SysInfoData } from "../utils/ApiInterfaces";
-import Card from "./Common/Card";
+import { SysInfoData } from "../../utils/ApiInterfaces";
+import Card from "../Common/Card";
 import { FaGear } from "react-icons/fa6";
-import useFetch from "../utils/useFetch";
+import useFetch from "../../utils/useFetch";
 
 const SysInfo = () => {
   const { data, loading } = useFetch<SysInfoData>("gen/", 10000);
@@ -25,7 +25,7 @@ const SysInfo = () => {
       {loading ? (
         // Loading
         <Card>
-          <p className="text-white">Sys Loading...</p>
+          <p className="font-serif text-white">System Loading...</p>
         </Card>
       ) : (
         // Actual

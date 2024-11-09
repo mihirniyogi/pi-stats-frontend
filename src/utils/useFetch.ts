@@ -20,9 +20,10 @@ const useFetch = <T>(url: string, interval: number): DataResponse<T> => {
         setData(response.data);
       } catch (error) {
         console.error((error as AxiosError).message);
+        setData(null);
       } finally {
         setLoading(false);
-      } 
+      }
     }
 
     fetchData();

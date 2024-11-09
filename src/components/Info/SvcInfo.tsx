@@ -1,7 +1,7 @@
 import { FaBuffer } from "react-icons/fa6";
-import Card from "./Common/Card";
-import { SvcInfoData } from "../utils/ApiInterfaces";
-import useFetch from "../utils/useFetch";
+import Card from "../Common/Card";
+import { SvcInfoData } from "../../utils/ApiInterfaces";
+import useFetch from "../../utils/useFetch";
 
 type Service = {
   name: string;
