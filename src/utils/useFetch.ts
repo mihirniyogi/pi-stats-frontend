@@ -22,7 +22,7 @@ const useFetch = <T>(url: string, interval: number): DataResponse<T> => {
         console.error((error as AxiosError).message);
       } finally {
         setLoading(false);
-      }
+      } 
     }
 
     fetchData();

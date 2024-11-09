@@ -21,73 +21,75 @@ const DiskInfo = () => {
         <span>Disk</span>
       </h2>
 
-      {loading && (
+      {loading ? (
+        // Loading
         <Card>
           <p className="font-serif text-white">Disk Loading...</p>
         </Card>
-      )}
-
-      <Card>
-        {/* Total (in GB) */}
-        <section
-          className={`text-white font-serif font-medium
+      ) : (
+        // Actual
+        <Card>
+          {/* Total (in GB) */}
+          <section
+            className={`text-white font-serif font-medium
               text-sm
               sm:text-md
               md:text-lg
               lg:text-xl
               `}
-        >
-          <span>{"Total: "}</span>
-          <span className={`font-extralight`}>
-            {data ? `${data.total.toFixed(2)} GB` : "-"}
-          </span>
-        </section>
+          >
+            <span>{"Total: "}</span>
+            <span className={`font-extralight`}>
+              {data ? `${data.total.toFixed(2)} GB` : "-"}
+            </span>
+          </section>
 
-        {/* Used (in GB) */}
-        <section
-          className={`text-white font-serif font-medium
+          {/* Used (in GB) */}
+          <section
+            className={`text-white font-serif font-medium
               text-sm
               sm:text-md
               md:text-lg
               lg:text-xl
               `}
-        >
-          <span>Used: </span>
-          <span className={`font-extralight`}>
-            {data ? `${data.used.toFixed(2)} GB` : "-"}
-          </span>
-        </section>
+          >
+            <span>Used: </span>
+            <span className={`font-extralight`}>
+              {data ? `${data.used.toFixed(2)} GB` : "-"}
+            </span>
+          </section>
 
-        {/* Free (in GB) */}
-        <section
-          className={`text-white font-serif font-medium
+          {/* Free (in GB) */}
+          <section
+            className={`text-white font-serif font-medium
               text-sm
               sm:text-md
               md:text-lg
               lg:text-xl
               `}
-        >
-          <span>Free: </span>
-          <span className={`font-extralight`}>
-            {data ? `${data.free.toFixed(2)} GB` : "-"}
-          </span>
-        </section>
+          >
+            <span>Free: </span>
+            <span className={`font-extralight`}>
+              {data ? `${data.free.toFixed(2)} GB` : "-"}
+            </span>
+          </section>
 
-        {/* Percentage */}
-        <section
-          className={`mt-2
+          {/* Percentage */}
+          <section
+            className={`mt-2
             text-white font-serif font-medium
               text-sm
               sm:text-md
               md:text-lg
               lg:text-xl
               `}
-        >
-          <ProgressBar
-            percentage={data ? parseFloat(data.percent.toFixed(1)) : 0}
-          />
-        </section>
-      </Card>
+          >
+            <ProgressBar
+              percentage={data ? parseFloat(data.percent.toFixed(1)) : 0}
+            />
+          </section>
+        </Card>
+      )}
     </div>
   );
 };

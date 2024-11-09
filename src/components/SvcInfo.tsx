@@ -6,8 +6,8 @@ import useFetch from "../utils/useFetch";
 type Service = {
   name: string;
   managedBy: string;
-  port?: number;
   status: "online" | "offline";
+  port?: number;
   link?: string;
 };
 
@@ -38,57 +38,59 @@ const SvcInfo = () => {
         <span>Services</span>
       </h2>
 
-      {loading && (
+      {loading ? (
+        // Loading
         <Card>
           <p className="font-serif text-white">Services Loading...</p>
         </Card>
-      )}
-
-      <div className={`grid grid-cols-1 gap-x-4 sm:grid-cols-2 font-serif`}>
-        {services.map((service: Service, index: number) => (
-          <Card key={index} status={service.status}>
-            <h3
-              className={`flex flex-row space-x-2 text-white
+      ) : (
+        // Actual
+        <div className={`grid grid-cols-1 gap-x-4 sm:grid-cols-2 font-serif`}>
+          {services.map((service: Service, index: number) => (
+            <Card key={index} status={service.status}>
+              <h3
+                className={`flex flex-row space-x-2 text-white
                 text-sm
                 sm:text-md
                 md:text-lg
                 lg:text-xl`}
-            >
-              <span>{service.name}</span>
-              <span className={`italic text-gray-400`}>
-                {service.port ? `:${service.port}` : ""}
-              </span>
-            </h3>
-            <span
-              className={`
+              >
+                <span>{service.name}</span>
+                <span className={`italic text-gray-400`}>
+                  {service.port ? `:${service.port}` : ""}
+                </span>
+              </h3>
+              <span
+                className={`
                 text-xs
                 sm:text-sm
                 md:text-md
                 lg:text-lg
               italic text-gray-400`}
-            >
-              {`managed by ${service.managedBy}`}
-            </span>
-            <span
-              className={`
+              >
+                {`managed by ${service.managedBy}`}
+              </span>
+              <span
+                className={`
                 text-xs
                 sm:text-sm
                 md:text-md
                 lg:text-lg
               italic underline underline-offset-2 text-gray-400`}
-            >
-              <a
-                className="hidden sm:block"
-                href={service.link}
-                target="_blank"
-                rel="noopener noreferrer"
               >
-                {service.link ? "link" : ""}
-              </a>
-            </span>
-          </Card>
-        ))}
-      </div>
+                <a
+                  className="hidden sm:block"
+                  href={service.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {service.link ? "link" : ""}
+                </a>
+              </span>
+            </Card>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

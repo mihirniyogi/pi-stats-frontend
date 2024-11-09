@@ -21,78 +21,80 @@ const MemInfo = () => {
         <span>RAM</span>
       </h2>
 
-      {loading && (
+      {loading ? (
+        // Loading
         <Card>
           <p className="font-serif text-white">Memory Loading...</p>
         </Card>
-      )}
-
-      <Card>
-        {/* Total (in GB) */}
-        <section
-          className={`text-white font-serif font-medium
+      ) : (
+        // Actual
+        <Card>
+          {/* Total (in GB) */}
+          <section
+            className={`text-white font-serif font-medium
               text-sm
               sm:text-md
               md:text-lg
               lg:text-xl
               `}
-        >
-          <span>{"Total: "}</span>
-          <span className={`font-extralight`}>
-            {data ? `${data.total.toFixed(2)} GB` : "-"}
-          </span>
-        </section>
+          >
+            <span>{"Total: "}</span>
+            <span className={`font-extralight`}>
+              {data ? `${data.total.toFixed(2)} GB` : "-"}
+            </span>
+          </section>
 
-        {/* Used (in GB) */}
-        <section
-          className={`text-white font-serif font-medium
+          {/* Used (in GB) */}
+          <section
+            className={`text-white font-serif font-medium
               text-sm
               sm:text-md
               md:text-lg
               lg:text-xl
               `}
-        >
-          <span>Used: </span>
-          <span className={`font-extralight`}>
-            {data ? `${data.used.toFixed(2)} GB` : "-"}
-          </span>
-        </section>
+          >
+            <span>Used: </span>
+            <span className={`font-extralight`}>
+              {data ? `${data.used.toFixed(2)} GB` : "-"}
+            </span>
+          </section>
 
-        {/* Available (in GB) */}
-        <section
-          className={`text-white font-serif font-medium
+          {/* Available (in GB) */}
+          <section
+            className={`text-white font-serif font-medium
               text-sm
               sm:text-md
               md:text-lg
               lg:text-xl
               `}
-        >
-          <span>Available: </span>
-          <span className={`font-extralight`}>
-            {" "}
-            {data ? `${data.available.toFixed(2)} GB` : "-"}
-          </span>
-        </section>
+          >
+            <span>Available: </span>
+            <span className={`font-extralight`}>
+              {" "}
+              {data ? `${data.available.toFixed(2)} GB` : "-"}
+            </span>
+          </section>
 
-        {/* Percentage */}
-        <section
-          className={`mt-2
+          {/* Percentage */}
+          <section
+            className={`mt-2
             text-white font-serif font-medium
               text-sm
               sm:text-md
               md:text-lg
               lg:text-xl
               `}
-        >
-          <ProgressBar
-            percentage={
-              data
-                ? parseFloat(((data.used / data.total) * 100).toFixed(1))
-                : 0.0
-            }
-          />
-        </section>
-      </Card>
+          >
+            <ProgressBar
+              percentage={
+                data
+                  ? parseFloat(((data.used / data.total) * 100).toFixed(1))
+                  : 0.0
+              }
+            />
+          </section>
+        </Card>
+      )}
     </div>
   );
 };
