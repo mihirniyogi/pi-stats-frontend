@@ -2,6 +2,7 @@ import { FaBuffer } from "react-icons/fa6";
 import Card from "../Common/Card";
 import { SvcInfoData } from "../../utils/ApiInterfaces";
 import useFetch from "../../utils/useFetch";
+import Loading from "../../utils/Loading";
 
 type Service = {
   name: string;
@@ -40,9 +41,7 @@ const SvcInfo = () => {
 
       {loading ? (
         // Loading
-        <Card>
-          <p className="font-serif text-white">Services Loading...</p>
-        </Card>
+        <Loading />
       ) : (
         // Actual
         <div className={`grid grid-cols-1 gap-x-4 sm:grid-cols-2 font-serif`}>

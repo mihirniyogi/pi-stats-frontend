@@ -3,6 +3,8 @@ import Card from "../Common/Card";
 import { FaGear } from "react-icons/fa6";
 import useFetch from "../../utils/useFetch";
 
+import Loading from "../../utils/Loading";
+
 const SysInfo = () => {
   const { data, loading } = useFetch<SysInfoData>("gen/", 10000);
 
@@ -24,9 +26,7 @@ const SysInfo = () => {
 
       {loading ? (
         // Loading
-        <Card>
-          <p className="font-serif text-white">System Loading...</p>
-        </Card>
+        <Loading />
       ) : (
         // Actual
         <Card>
@@ -43,7 +43,11 @@ const SysInfo = () => {
             <span
               className={`inline-block w-[0.8em] h-[0.8em]  
                 rounded-full 
-                ${serverOnline ? "bg-jadegreen" : "bg-red-500"}`}
+                ${
+                  serverOnline
+                    ? "bg-jadegreen animate-blink"
+                    : "bg-red-500 animate-blink"
+                }`}
             ></span>
             <span className={`font-extralight`}>
               {serverOnline ? " Online" : " Offline"}

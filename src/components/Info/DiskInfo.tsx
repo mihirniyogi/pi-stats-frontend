@@ -1,4 +1,5 @@
 import { DiskInfoData } from "../../utils/ApiInterfaces";
+import Loading from "../../utils/Loading";
 import useFetch from "../../utils/useFetch";
 import Card from "../Common/Card";
 import ProgressBar from "../Common/ProgressBar";
@@ -23,9 +24,7 @@ const DiskInfo = () => {
 
       {loading ? (
         // Loading
-        <Card>
-          <p className="font-serif text-white">Disk Loading...</p>
-        </Card>
+        <Loading />
       ) : (
         // Actual
         <Card>

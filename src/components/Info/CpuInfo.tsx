@@ -4,6 +4,7 @@ import Card from "../Common/Card";
 import Cores from "../Common/Cores";
 import ProgressBar from "../Common/ProgressBar";
 import { FaMicrochip } from "react-icons/fa6";
+import Loading from "../../utils/Loading";
 
 const CpuInfo = () => {
   const { data, loading } = useFetch<CpuInfoData>("cpu/", 10000);
@@ -24,9 +25,7 @@ const CpuInfo = () => {
 
       {loading ? (
         // Loading
-        <Card>
-          <p className="font-serif text-white">CPU Loading...</p>
-        </Card>
+        <Loading />
       ) : (
         // Actual
         <Card>

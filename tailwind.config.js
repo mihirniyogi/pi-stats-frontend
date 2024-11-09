@@ -22,6 +22,16 @@ export default {
           "serif",
         ],
       },
+      animation: {
+        blink: "blink 10s ease-in-out infinite", // 'blink' here refers to the keyframe below
+      },
+      keyframes: {
+        blink: {
+          "0%, 70%": { opacity: "1" }, // Stay at opacity 1 for 70% of the time
+          "85%": { opacity: "0" }, // Blink at opacity - after 70%
+          "100%": { opacity: "1" }, // Return to opacity 1 at the end
+        },
+      },
     },
   },
 };

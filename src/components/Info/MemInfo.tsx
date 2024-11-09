@@ -3,6 +3,7 @@ import Card from "../Common/Card";
 import ProgressBar from "../Common/ProgressBar";
 import { MemInfoData } from "../../utils/ApiInterfaces";
 import useFetch from "../../utils/useFetch";
+import Loading from "../../utils/Loading";
 
 const MemInfo = () => {
   const { data, loading } = useFetch<MemInfoData>("mem/", 10000);
@@ -23,9 +24,7 @@ const MemInfo = () => {
 
       {loading ? (
         // Loading
-        <Card>
-          <p className="font-serif text-white">Memory Loading...</p>
-        </Card>
+        <Loading />
       ) : (
         // Actual
         <Card>
