@@ -5,53 +5,8 @@ import CpuInfo from "./components/CpuInfo";
 import MemInfo from "./components/MemInfo";
 import DiskInfo from "./components/DiskInfo";
 import SvcInfo from "./components/SvcInfo";
-import { SysInfoData } from "./utils/ApiInterfaces";
-import axios from "axios";
-import { useEffect, useState } from "react";
-
-interface AppData {
-  sys: SysInfoData | null;
-}
-
-const FETCH_INTERVAL = 20000;
 
 function App() {
-  const [data, setData] = useState<AppData>({
-    sys: null,
-  });
-
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const BASE_URL = import.meta.env.VITE_BACKEND_URL;
-        const [sysRes] = await Promise.all([
-          axios.get<SysInfoData>(BASE_URL + "gen/"),
-        ]);
-
-        setData({
-          sys: sysRes.data,
-        });
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    // when component first renders, fetch data
-    fetchData();
-
-    // after render, every FETCH_INTERVAL ms, fetch data
-    const interval = setInterval(fetchData, FETCH_INTERVAL);
-    return () => clearInterval(interval);
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     // Entire screen
     <div className={`flex min-h-screen bg-background`}>
