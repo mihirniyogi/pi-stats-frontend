@@ -1,10 +1,20 @@
-import { CpuInfoData } from "../interfaces/ApiInterfaces";
+import useFetch from "../utils/useFetch";
+import { CpuInfoData } from "../utils/ApiInterfaces";
 import Card from "./Common/Card";
 import Cores from "./Common/Cores";
 import ProgressBar from "./Common/ProgressBar";
 import { FaMicrochip } from "react-icons/fa6";
 
-const CpuInfo = ({ data }: { data: CpuInfoData | null }) => {
+const CpuInfo = () => {
+  const { data, loading, error } = useFetch<CpuInfoData>("cpu/", 10000);
+
+  if (loading) {
+    return <p className="text-white">CPU Loading...</p>;
+  }
+  if (error) {
+    return <p className="text-white">{error}</p>;
+  }
+
   return (
     <div>
       <h2

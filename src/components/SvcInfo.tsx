@@ -1,6 +1,7 @@
 import { FaBuffer } from "react-icons/fa6";
 import Card from "./Common/Card";
-import { SvcInfoData } from "../interfaces/ApiInterfaces";
+import { SvcInfoData } from "../utils/ApiInterfaces";
+import useFetch from "../utils/useFetch";
 
 type Service = {
   name: string;
@@ -10,7 +11,16 @@ type Service = {
   link?: string;
 };
 
-const SvcInfo = ({ data }: { data: SvcInfoData | null }) => {
+const SvcInfo = () => {
+  const { data, loading, error } = useFetch<SvcInfoData>("svc/", 10000);
+
+  if (loading) {
+    return <p className="text-white">Services Loading...</p>;
+  }
+  if (error) {
+    return <p className="text-white">{error}</p>;
+  }
+
   const services: Service[] = data
     ? Object.entries(data).map(([name, info]) => ({
         name: name,

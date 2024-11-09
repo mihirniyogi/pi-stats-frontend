@@ -1,8 +1,18 @@
-import { SysInfoData } from "../interfaces/ApiInterfaces";
+import { SysInfoData } from "../utils/ApiInterfaces";
 import Card from "./Common/Card";
 import { FaGear } from "react-icons/fa6";
+import useFetch from "../utils/useFetch";
 
-const SysInfo = ({ data }: { data: SysInfoData | null }) => {
+const SysInfo = () => {
+  const { data, loading, error } = useFetch<SysInfoData>("gen/", 10000);
+
+  if (loading) {
+    return <p className="text-white">Sys Loading...</p>;
+  }
+  if (error) {
+    return <p className="text-white">{error}</p>;
+  }
+
   const serverOnline = data !== null ? 1 : 0;
 
   return (
@@ -69,7 +79,7 @@ const SysInfo = ({ data }: { data: SysInfoData | null }) => {
             {data
               ? `${Math.round(data.uptime.days)}D, 
                   ${Math.round(data.uptime.hours)}H, 
-                  ${Math.round(data.uptime.minutes)}M 
+                  ${Math.round(data.uptime.minutes)}M, 
                   ${Math.round(data.uptime.seconds)}S`
               : "-"}{" "}
           </span>

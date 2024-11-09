@@ -1,9 +1,19 @@
 import { FaMemory } from "react-icons/fa6";
 import Card from "./Common/Card";
 import ProgressBar from "./Common/ProgressBar";
-import { MemInfoData } from "../interfaces/ApiInterfaces";
+import { MemInfoData } from "../utils/ApiInterfaces";
+import useFetch from "../utils/useFetch";
 
-const MemInfo = ({ data }: { data: MemInfoData | null }) => {
+const MemInfo = () => {
+  const { data, loading, error } = useFetch<MemInfoData>("mem/", 10000);
+
+  if (loading) {
+    return <p className="text-white">Mem Loading...</p>;
+  }
+  if (error) {
+    return <p className="text-white">{error}</p>;
+  }
+
   return (
     <div>
       <h2

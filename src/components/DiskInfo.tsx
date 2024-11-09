@@ -1,9 +1,19 @@
-import { DiskInfoData } from "../interfaces/ApiInterfaces";
+import { DiskInfoData } from "../utils/ApiInterfaces";
+import useFetch from "../utils/useFetch";
 import Card from "./Common/Card";
 import ProgressBar from "./Common/ProgressBar";
 import { FaSdCard } from "react-icons/fa6";
 
-const DiskInfo = ({ data }: { data: DiskInfoData | null }) => {
+const DiskInfo = () => {
+  const { data, loading, error } = useFetch<DiskInfoData>("disk/", 10000);
+
+  if (loading) {
+    return <p className="text-white">Disk Loading...</p>;
+  }
+  if (error) {
+    return <p className="text-white">{error}</p>;
+  }
+
   return (
     <div>
       <h2
